@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-float promedio(float progresos[3])
+float promedioest(float progresos[3])
 {
     float suma = 0.0;
     for (int i = 0; i < 3; i++)
@@ -16,12 +16,14 @@ int main()
 {
     srand(time(NULL));
     float notas[23][3];
+    float promediosp[3];
     for (int i = 0; i < 23; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             int numero = rand() % 100;
             notas[i][j] = numero / 10.0;
+            promediosp[j] += notas[i][j];
         }
     }
 
@@ -31,7 +33,15 @@ int main()
         {
             printf("%.2f   ", notas[i][j]);
         }
-        printf("Promedio: %.2f\n", promedio(notas[i]));
+        printf("Promedio: %.2f\n", promedioest(notas[i]));
+    }
+
+    printf("--------------------\n");
+
+    for (int j = 0; j < 3; j++)
+    {
+        promediosp[j] /= 23;
+        printf("%.2f   ", promediosp[j]);
     }
 
     return 0;
