@@ -17,6 +17,10 @@ int main()
     srand(time(NULL));
     float notas[23][3];
     float promediosp[3];
+
+    float abanderado;
+    float estudiantetop;
+
     for (int i = 0; i < 23; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -29,19 +33,27 @@ int main()
 
     for (int i = 0; i < 23; i++)
     {
-        for (int j = 0; j < 3; j++)
+        float promedio_estudiante = promedioest(notas[i]);
+        printf("%.2f   %.2f   %.2f   -   Promedio: %.2f\n", notas[i][0], notas[i][1], notas[i][2], promedio_estudiante);
+
+        if (promedio_estudiante > estudiantetop)
         {
-            printf("%.2f   ", notas[i][j]);
+            estudiantetop = promedio_estudiante;
         }
-        printf("Promedio: %.2f\n", promedioest(notas[i]));
     }
 
-    printf("--------------------\n");
+    printf("\n");
+    printf("P1:    P2:    P3:\n");
 
     for (int j = 0; j < 3; j++)
     {
         promediosp[j] /= 23;
         printf("%.2f   ", promediosp[j]);
+    }
+
+    if (estudiantetop > abanderado)
+    {
+        printf("El mejor estudiante obtuvo una calificacion de: %.2f", estudiantetop);
     }
 
     return 0;
